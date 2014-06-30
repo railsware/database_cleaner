@@ -19,26 +19,26 @@ rescue LoadError
   puts "Jeweler not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"
 end
 
-require 'rake/rdoctask'
-Rake::RDocTask.new do |rdoc|
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = 'database_cleaner'
-  rdoc.options << '--line-numbers' << '--inline-source'
-  rdoc.rdoc_files.include('README*')
-  rdoc.rdoc_files.include('lib/**/*.rb')
-end
+# require 'rake/rdoctask'
+# Rake::RDocTask.new do |rdoc|
+#   rdoc.rdoc_dir = 'rdoc'
+#   rdoc.title = 'database_cleaner'
+#   rdoc.options << '--line-numbers' << '--inline-source'
+#   rdoc.rdoc_files.include('README*')
+#   rdoc.rdoc_files.include('lib/**/*.rb')
+# end
 
-require 'spec/rake/spectask'
-Spec::Rake::SpecTask.new(:spec) do |t|
-  t.libs << 'lib' << 'spec'
-  t.spec_files = FileList['spec/**/*_spec.rb']
-end
+# require 'spec/rake/spectask'
+# Spec::Rake::SpecTask.new(:spec) do |t|
+#   t.libs << 'lib' << 'spec'
+#   t.spec_files = FileList['spec/**/*_spec.rb']
+# end
 
-Spec::Rake::SpecTask.new(:rcov) do |t|
-  t.libs << 'lib' << 'spec'
-  t.spec_files = FileList['spec/**/*_spec.rb']
-  t.rcov = true
-end
+# Spec::Rake::SpecTask.new(:rcov) do |t|
+#   t.libs << 'lib' << 'spec'
+#   t.spec_files = FileList['spec/**/*_spec.rb']
+#   t.rcov = true
+# end
 
 begin
   require 'cucumber/rake/task'
@@ -56,7 +56,7 @@ task :clean do
     "examples/db/datamapper_one.db", "examples/db/datamapper_two.db"].each do |f|
     FileUtils.rm_f(f)
   end
-  %w[*.sqlite3 *.log].each do |pattern|
+  %w[*.sqlite3 *.log #* *.swp *.swo].each do |pattern|
     `find . -name "#{pattern}" -delete`
   end
 end
